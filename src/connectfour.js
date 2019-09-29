@@ -18,6 +18,18 @@ class App extends React.Component {
     this.play = this.play.bind(this);
   }
 
+  // Resetting Player Message
+  resetPlayerMessage() {
+    document.getElementById("YellowPlayersTurnDivId").style.display = "none";
+    document.getElementById("RedPlayersTurnDivId").style.display = "block";
+  }
+
+  // Clearing Player Names
+  clearPlayerNames() {
+    document.getElementById("redname").value = "";
+    document.getElementById("yellowname").value = "";
+  }
+
   // Starts new game
   initBoard() {
     // Create a blank 6x7 matrix
@@ -37,6 +49,17 @@ class App extends React.Component {
   }
 
   togglePlayer() {
+    //this.state.currentPlayer is the player that just played
+    if (this.state.currentPlayer === this.state.player1) {
+      //It's Yellow Player's Turn
+      document.getElementById("YellowPlayersTurnDivId").style.display = "block";
+      document.getElementById("RedPlayersTurnDivId").style.display = "none";
+    }
+    else {
+      //It's Red Player's Turn
+      document.getElementById("YellowPlayersTurnDivId").style.display = "none";
+      document.getElementById("RedPlayersTurnDivId").style.display = "block";
+    }
     return (this.state.currentPlayer === this.state.player1) ? this.state.player2 : this.state.player1;
   }
 
@@ -53,7 +76,6 @@ class App extends React.Component {
 
       // Check status of board
       let result = this.checkAll(board);
-      debugger;
       if (result === this.state.player1) {
         this.setState({ board, gameOver: true, message: 'Red Player:' + document.getElementById("redname").value + ' (red) wins!' });
       } else if (result === this.state.player2) {
@@ -150,13 +172,19 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <div className="button" onClick={() => { this.initBoard() }}>New Game</div>
+        <div className="button" onClick={() => { this.initBoard(); this.clearPlayerNames(); this.resetPlayerMessage(); }}>New Game</div>
         <div align="center">
-        <label for="uname"><b>Red Player:</b></label>
-        <input type="text" placeholder="Enter Red Player Name" id="redname"></input>
-        <br />
-        <label for="uname"><b>Yellow Player:</b></label>
-        <input type="text" placeholder="Enter Yellow Player Name" id="yellowname"></input>
+          <label for="uname"><b>Red Player:</b></label>
+          <input type="text" placeholder="Enter Red Player Name" id="redname"></input>
+          <br />
+          <label for="uname"><b>Yellow Player:</b></label>
+          <input type="text" placeholder="Enter Yellow Player Name" id="yellowname"></input>
+        </div>
+        <div id="RedPlayersTurnDivId" align="center">
+          It is <font color="#c40c0c"><b>Red</b></font> Player's Turn
+        </div>
+        <div id="YellowPlayersTurnDivId" align="center">
+          It is <font color="yellow"><b>Yellow</b></font> Player's Turn
         </div>
         <table>
           <thead>
@@ -213,3 +241,5 @@ document.body.appendChild(footerDivElement);
 var container = document.getElementById('main');
 
 ReactDOM.render(<App />, container);
+
+document.getElementById("YellowPlayersTurnDivId").style.display = "none";
