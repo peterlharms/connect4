@@ -11,7 +11,8 @@ class App extends React.Component {
       currentPlayer: null,
       board: [],
       gameOver: false,
-      message: ''
+      message: '',
+      autoPlay: false
     };
 
     // Bind play function to App component
@@ -44,11 +45,12 @@ class App extends React.Component {
       board,
       currentPlayer: this.state.player1,
       gameOver: false,
-      message: ''
+      message: '',
+      autoPlay: false
     });
   }
 
-  togglePlayer() {
+   togglePlayer() {
     //this.state.currentPlayer is the player that just played
     if (this.state.currentPlayer === this.state.player1) {
       //It's Yellow Player's Turn
@@ -65,7 +67,6 @@ class App extends React.Component {
 
   column_not_full(c){
     let board = this.state.board;
-    debugger;
     for (var r=0;r<=5;r++){
       if (!board[r][c]) return true;
     }
@@ -95,12 +96,17 @@ class App extends React.Component {
         }
       }
      
-      c = this.getRandom();
+      var cb = document.getElementById("autoplay");
+      this.state.autoPlay = cb.checked;
       
-      for (let r = 5; r >= 0; r--) {
-        if (!board[r][c]) {
-          board[r][c] = this.state.player2;
-          break;
+      if ( this.state.autoPlay){
+        c = this.getRandom();
+            
+        for (let r = 5; r >= 0; r--) {
+         if (!board[r][c]) {
+            board[r][c] = this.state.player2;
+            break;
+          }
         }
       }
 
@@ -113,7 +119,10 @@ class App extends React.Component {
       } else if (result === 'draw') {
         this.setState({ board, gameOver: true, message: 'Draw game.' });
       } else {
-        // this.setState({ board, currentPlayer: this.togglePlayer() });
+        if ( !this.state.autoPlay ) {
+          this.setState({ board, currentPlayer: this.togglePlayer() });
+        }
+        
         this.setState({ board });
       }
     } else {
@@ -210,6 +219,8 @@ class App extends React.Component {
           <br />
           <label for="uname"><b>Yellow Player:</b></label>
           <input type="text" placeholder="Enter Yellow Player Name" id="yellowname"></input>
+          <input type="checkbox" name="autoplay" value="False" id="autoplay" /> Auto-Play
+
         </div>
         <div id="RedPlayersTurnDivId" align="center">
           It is <font color="#c40c0c"><b>Red</b></font> Player's Turn
