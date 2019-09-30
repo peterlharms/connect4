@@ -11,8 +11,7 @@ class App extends React.Component {
       currentPlayer: null,
       board: [],
       gameOver: false,
-      message: '',
-      autoPlay: false
+      message: ''
     };
 
     // Bind play function to App component
@@ -45,9 +44,8 @@ class App extends React.Component {
       board,
       currentPlayer: this.state.player1,
       gameOver: false,
-      message: '',
-      autoPlay: false
-    });
+      message: ''
+      });
   }
 
    togglePlayer() {
@@ -97,9 +95,8 @@ class App extends React.Component {
       }
      
       var cb = document.getElementById("autoplay");
-      this.state.autoPlay = cb.checked;
       
-      if ( this.state.autoPlay){
+      if ( cb.checked ){
         c = this.getRandom();
             
         for (let r = 5; r >= 0; r--) {
@@ -113,13 +110,13 @@ class App extends React.Component {
       // Check status of board
       let result = this.checkAll(board);
       if (result === this.state.player1) {
-        this.setState({ board, gameOver: true, message: 'Red Player:' + document.getElementById("redname").value + ' (red) wins!' });
+        this.setState({ board, gameOver: true, message: 'Red Player:' + document.getElementById("redname").value + ' wins!' });
       } else if (result === this.state.player2) {
-        this.setState({ board, gameOver: true, message: 'Yellow Player:' + document.getElementById("yellowname").value + ' (yellow) wins!' });
+        this.setState({ board, gameOver: true, message: 'Yellow Player:' + document.getElementById("yellowname").value + ' wins!' });
       } else if (result === 'draw') {
         this.setState({ board, gameOver: true, message: 'Draw game.' });
       } else {
-        if ( !this.state.autoPlay ) {
+        if ( !cb.checked ) {
           this.setState({ board, currentPlayer: this.togglePlayer() });
         }
         
@@ -214,13 +211,27 @@ class App extends React.Component {
       <div>
         <div className="button" onClick={() => { this.initBoard(); this.clearPlayerNames(); this.resetPlayerMessage(); }}>New Game</div>
         <div align="center">
-          <label for="uname"><b>Red Player:</b></label>
-          <input type="text" placeholder="Enter Red Player Name" id="redname"></input>
-          <br />
-          <label for="uname"><b>Yellow Player:</b></label>
-          <input type="text" placeholder="Enter Yellow Player Name" id="yellowname"></input>
-          <input type="checkbox" name="autoplay" value="False" id="autoplay" /> Auto-Play
-
+          <table>
+            <tr>
+              <td>
+                <label for="uname"><b>Red Player:</b></label>
+              </td>
+              <td>
+                <input type="text" placeholder="Enter Red Player Name" id="redname"></input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="uname"><b>Yellow Player:</b></label>
+              </td>
+              <td>
+                <input type="text" placeholder="Enter Yellow Player Name" id="yellowname"></input>
+              </td>  
+              <td>
+                <input type="checkbox" name="autoplay" value="False" id="autoplay" /> Auto-Play
+              </td>
+            </tr>
+          </table>
         </div>
         <div id="RedPlayersTurnDivId" align="center">
           It is <font color="#c40c0c"><b>Red</b></font> Player's Turn
