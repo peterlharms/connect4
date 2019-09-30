@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <body>
       <h2 className="animated fadeInRightBig">Connect 4 Project</h2>
-      <h5 className="animated fadeInRightBig">Version 1.0</h5>
+      <h5 className="animated fadeInRightBig">Version 1.01</h5>
         <h4 className="animated fadeInRightBig"> by Peter L. Harms</h4>
       </body>
     </div>

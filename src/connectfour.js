@@ -95,8 +95,9 @@ class App extends React.Component {
       }
      
       var cb = document.getElementById("autoplay");
+      var autoPlay = cb.checked && (this.state.currentPlayer == this.state.player1);
       
-      if ( cb.checked ){
+      if ( autoPlay ){
         c = this.getRandom();
             
         for (let r = 5; r >= 0; r--) {
@@ -116,11 +117,11 @@ class App extends React.Component {
       } else if (result === 'draw') {
         this.setState({ board, gameOver: true, message: 'Draw game.' });
       } else {
-        if ( !cb.checked ) {
+        if ( !autoPlay ) {
           this.setState({ board, currentPlayer: this.togglePlayer() });
         }
-        
-        this.setState({ board });
+      
+      this.setState({ board });
       }
     } else {
       this.setState({ message: 'Game over. Please start a new game.' });
@@ -228,7 +229,7 @@ class App extends React.Component {
                 <input type="text" placeholder="Enter Yellow Player Name" id="yellowname"></input>
               </td>  
               <td>
-                <input type="checkbox" name="autoplay" value="False" id="autoplay" /> Auto-Play
+                <input type="checkbox" name="autoplay" value="False" id="autoplay" /> Auto-Play 
               </td>
             </tr>
           </table>
