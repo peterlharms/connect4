@@ -1,5 +1,7 @@
 Connect 4 Project
 
+Utilized gameplay code from https://codepen.io/jeffleu/pen/KgbZwj
+
 Two person game, with option for player #2 to autoplay
 
 autoplay can be changed while player #1 is playing
