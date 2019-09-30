@@ -25,7 +25,7 @@ function App() {
       {/* </header> */}
       <body>
       <h1 className="animated fadeInRightBig">Connect 4 Project</h1>
-      <h3 className="animated fadeInRightBig">Version 0.91</h3>
+      <h3 className="animated fadeInRightBig">Version 0.92</h3>
         <h2 className="animated fadeInRightBig"> by Peter L. Harms</h2>
       </body>
     </div>
