@@ -74,6 +74,14 @@ class App extends React.Component {
         }
       }
 
+      c = Math.floor(Math.random() * 7);
+      for (let r = 5; r >= 0; r--) {
+        if (!board[r][c]) {
+          board[r][c] = this.state.player2;
+          break;
+        }
+      }
+
       // Check status of board
       let result = this.checkAll(board);
       if (result === this.state.player1) {
@@ -83,7 +91,8 @@ class App extends React.Component {
       } else if (result === 'draw') {
         this.setState({ board, gameOver: true, message: 'Draw game.' });
       } else {
-        this.setState({ board, currentPlayer: this.togglePlayer() });
+        // this.setState({ board, currentPlayer: this.togglePlayer() });
+        this.setState({ board });
       }
     } else {
       this.setState({ message: 'Game over. Please start a new game.' });
