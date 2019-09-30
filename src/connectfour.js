@@ -63,6 +63,27 @@ class App extends React.Component {
     return (this.state.currentPlayer === this.state.player1) ? this.state.player2 : this.state.player1;
   }
 
+  column_not_full(c){
+    let board = this.state.board;
+    debugger;
+    for (var r=0;r<=5;r++){
+      if (!board[r][c]) return true;
+    }
+    return false;
+  }
+  
+  getRandom()
+  {
+    var available = [];
+    for (var i=0;i<=6;i++) {
+      if ( this.column_not_full(i)) {
+        available.push(i);
+      }
+    }
+    var index = Math.floor(Math.random() * available.length);
+    return available[index];
+  }
+
   play(c) {
     if (!this.state.gameOver) {
       // Place piece on board
@@ -73,8 +94,9 @@ class App extends React.Component {
           break;
         }
       }
-
-      c = Math.floor(Math.random() * 7);
+     
+      c = this.getRandom();
+      
       for (let r = 5; r >= 0; r--) {
         if (!board[r][c]) {
           board[r][c] = this.state.player2;
