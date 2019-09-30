@@ -1,3 +1,11 @@
+Connect 4 Project
+
+Two person game, with option for player #2 to autoplay
+autoplay can be changed while player #1 is playing
+Enhancement needed to make autoplay smart.  
+
+The remaining text in this file is the original, produced by create-react-app
+--------------------
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
