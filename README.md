@@ -1,4 +1,5 @@
 Connect 4 Project
+Latest code is in the ai3 branch
 
 Two person game, with option for player #2 to autoplay
 autoplay can be changed while player #1 is playing
